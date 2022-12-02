@@ -72,7 +72,7 @@ onclick="location.href='/app07/update/${board.num}'"/>
 		  	str += val.content+' '
 		  	str += val.regdate+' '
 		  	if("${sessionScope.sMember.id}"==val.userid){
-		  	str +="<a href=javascript:fdel("+val.cnum+")>삭제</a><br/>"
+		  	str +="<a href='javascript:fdel("+val.cnum+")'>삭제</a><br/>"
 		  }
 	  }) // each
 	  $("#replyResult").html(str)
