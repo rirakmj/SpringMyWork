@@ -21,6 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 		UserDetails user = new CustomUser(member);
 		System.out.println("user:" + user);
 		return member==null?null:user;
+		
 	}
 
 }

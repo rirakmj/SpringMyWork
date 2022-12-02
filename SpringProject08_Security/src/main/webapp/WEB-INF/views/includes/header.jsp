@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,48 +17,34 @@
 </head>
 <body>
 <div class="jumbotron text-center bg-light" style="margin-bottom:0">
-    <h2>Spring Board</h2>
+    <h2>Security Board</h2>
 </div>
 
-<nav class="navbar navbar-expand-sm bg-info navbar-dark">
+<nav class="navbar navbar-expand-sm bg-danger navbar-dark">
 <div class = "container">
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="/app07/">Home</a>
+  <a class="navbar-brand" href="/app08/">Home</a>
   
   <!-- Links -->
   <ul class="navbar-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link" href="/app07/insert">글쓰기</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/uploadFile">파일</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/fileList">파일게시판</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/fileinsert">파일올리기</a>
-    </li>
-  </ul>
+      <a class="nav-link" href="/app08/board/insert">글쓰기</a>
+      <sec:authorize access="hasRole('ROLE_ADMIN')">
+      <li class="nav-item"><a class="nav-link" href="#">Product</a></li>
+      </sec:authorize>
+   </ul>
+  
+  <sec:authentication property="principal" var="pinfo" />
   <ul class="navbar-nav">
-  <c:choose>
-  	<c:when test="${empty sessionScope.sMember}">
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/member/join">회원가입</a></li>
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/member/login">로그인</a>
-    </li>
-    </c:when>
-    <c:otherwise>
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/member/update">회원변경</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/app07/member/logout">로그아웃(${sessionScope.sMember.name })</a>
-    </li>
-    </c:otherwise>
-    </c:choose>
+  <sec:authorize access="isAnonymous()">
+  <li class="nav-item"><a class="nav-link" href="/app08/customLogin">로그인</a></li>
+  </sec:authorize>
+  <sec:authorize access="isAuthenticated()">
+  <li class="nav-item"><a class="nav-link" href="/app08/customLogout">로그아웃(${pinfo.username}님 반갑습니다.)</a></li>
+  로그아웃(<sec:authentication property="principal.member.username" />)
+  </sec:authorize>
   </ul>
+  
   </div>
 </nav>
 </body>
