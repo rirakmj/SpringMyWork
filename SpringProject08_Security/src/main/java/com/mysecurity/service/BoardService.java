@@ -12,31 +12,23 @@ import com.mysecurity.mapper.BoardMapper;
 public class BoardService {
 	@Autowired
 	private BoardMapper bmapper;
-
-	// add
+	//추가
 	public void insert(BoardDTO board) {
 		bmapper.insert(board);
 	}
-	
-	// overview
-		public List<BoardDTO> list() {
+
+	//전체보기
+	public List<BoardDTO> list(){
 		return bmapper.list();
-		}
-	// count
-		public int count() {
-		return bmapper.count();
-		}
-	// detail
-		public BoardDTO findByNum(int num) {
-			return bmapper.findByNum(num);
-		}
-	// update
-		public void update(BoardDTO board) {
-		bmapper.update(board);
-		}
-	// delete
-		public void delete(int num) {
-		bmapper.delete(num);
-		}		
+	}
+	//개수
+	public int getCount() {
+		return bmapper.getCount();
+	}
+	//상세보기
+	public BoardDTO findByNum(int num) {
+		return bmapper.findByNum(num);
+	}
+	
+
 }
-		

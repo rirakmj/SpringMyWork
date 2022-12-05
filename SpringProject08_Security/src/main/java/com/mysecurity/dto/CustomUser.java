@@ -1,5 +1,6 @@
 package com.mysecurity.dto;
 
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -8,17 +9,18 @@ import org.springframework.security.core.userdetails.User;
 import lombok.Getter;
 import lombok.Setter;
 
-// 矫钮府萍啊 利侩等 蜡历
-@Getter @Setter
-public class CustomUser extends User{
+@Getter  @Setter
+public class CustomUser  extends User{
 	private MemberDTO member;
 	
 	public CustomUser(MemberDTO vo) {
 		super(vo.getUserid(),
-		vo.getUserpw(),
-		vo.getAuthList().stream().map(auth->new SimpleGrantedAuthority(auth.getAuth()))
-		.collect(Collectors.toList())
-		); // 积己磊
+				vo.getUserpw(),
+				vo.getAuthList().stream()
+				.map(auth->new SimpleGrantedAuthority(auth.getAuth()))
+				.collect(Collectors.toList())
+				); //积己磊
 		member = vo;
 	}
+
 }

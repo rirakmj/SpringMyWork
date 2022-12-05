@@ -16,25 +16,26 @@ public class CommentService {
 	private CommentMapper cmapper;
 	@Autowired
 	private BoardMapper bmapper;
-	// add
+	//추가
 	@Transactional
 	public void insert(CommentDTO comment) {
-		System.out.println("bnum:" + comment.getBnum());
-		bmapper.updateReplyCnt(comment.getBnum(),1);
+		System.out.println("bnum : " + comment.getBnum());
+		bmapper.updateReplyCnt(comment.getBnum(),1);  //해당 게시글에  replyCnt 1 증가
 		cmapper.insert(comment);
-		}
-	public List<CommentDTO> list(int bnum) { // bnum 받고
-		return cmapper.list(bnum); // bnum 주고
 	}
-public int getCount(int bnum) {
-	return cmapper.getCount(bnum);
+	//삭제
+	@Transactional
+	public void delete(int cnum) {
+		CommentDTO comment = cmapper.read(cnum);
+		bmapper.updateReplyCnt(comment.getBnum(), -1);
+		cmapper.delete(cnum);
+	}
+	
+	public List<CommentDTO> list(int bnum) {
+		 return 	cmapper.list(bnum);
+	}
+	public int getCount(int bnum) {
+		return cmapper.getCount(bnum);
 	}
 
-@Transactional
-public void delete(int cnum) {
-	CommentDTO comment = cmapper.read(cnum); // cnum을 이용해서 bnum을 구해오기, read 안 쓰고 sql문 join을 써도 됨.
-	bmapper.updateReplyCnt(comment.getBnum(), -1); 
-	cmapper.delete(cnum);
-	}
 }
-
