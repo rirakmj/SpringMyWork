@@ -4,8 +4,7 @@ import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
-
-@Getter @Setter
+@Getter  @Setter
 public class MemberDTO {
 	private String id;
 	private String name;

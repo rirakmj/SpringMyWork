@@ -10,61 +10,51 @@ import com.myboard.dto.BoardDTO;
 import com.myboard.dto.FileBoardDTO;
 
 @Service
-public class BoardServiceImpl implements BoardService {
-	@Autowired
-	private BoardRepository repository;
-	
+public class BoardServiceImpl  implements BoardService{
+  @Autowired
+  private BoardRepository brepository;
 	@Override
 	public void insert(BoardDTO board) {
-		repository.dao_insert(board);
+		brepository.dao_insert(board);
 		
 	}
 
 	@Override
 	public List<BoardDTO> findAll(HashMap<String, Object> hm) {
-		return repository.dao_findAll(hm);
+		return brepository.dao_findAll(hm);
 	}
 
 	@Override
-	public int getCount(HashMap<String, Object> hm) {
-		return repository.dao_getCount(hm);
-	}
-	
-	@Override
 	public BoardDTO findByNum(int num) {
-		repository.dao_upReadCount(num);
-		return repository.dao_findByNum(num);
+		brepository.dao_upReadCount(num);
+			return brepository.dao_findByNum(num);
 	}
 
 	@Override
 	public void update(BoardDTO board) {
-		repository.dao_update(board);	
-	}
-
-	@Override
-	public int delete(int num) {
-		return repository.dao_delete(num);
-	}
-
-	@Override
-	public void upReadCount(int num) {	
-	}
-
-	@Override
-	public void updateReplyCnt(int bnum, int amount) {
-		repository.dao_updateReplyCnt(bnum, amount);
-	}
-
-	@Override
-	public void fileInsert(FileBoardDTO board) {
-		repository.dao_fileInsert(board);
+	   brepository.dao_update(board);
 		
 	}
 
 	@Override
-	public List<FileBoardDTO> fileList() {
-		return repository.dao_fileList();
+	public void delete(int num) {
+		brepository.dao_delete(num);
+		
 	}
 
+	@Override
+	public int getCount(HashMap<String, Object> hm) {
+      	return brepository.dao_getCount(hm);
+	}
+
+	@Override
+	public void fileInsert(FileBoardDTO board) {
+       brepository.dao_fileInsert(board);
+	}
+
+	@Override
+	public List<FileBoardDTO> fileList() {
+		return brepository.dao_fileList();
+	}
 
 }

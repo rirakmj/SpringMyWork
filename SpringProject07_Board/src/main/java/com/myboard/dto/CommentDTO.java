@@ -8,13 +8,14 @@ import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter  @Setter
 public class CommentDTO {
 	private int cnum;
 	private String userid;
 	private String content;
-	@JsonFormat(shape=Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
+	@JsonFormat(shape = Shape.STRING,
+			pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	private Date regdate;
-	private int bnum;
+	private int bnum; //board테이블과 연관 외래키
 
 }
