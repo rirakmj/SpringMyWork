@@ -1,16 +1,15 @@
 package com.myboard.model;
 
+import java.util.List;
+
 import com.myboard.dto.MemberDTO;
 
 public interface MemberService {
-	//추가
+	
 	public void join(MemberDTO member);
-	
-	// 아이디중복확인
 	public int idCheck(String id);
-	
-	// 로그인체크
+	public List<MemberDTO> member(String id);
 	public MemberDTO loginCheck(String id);
-	//변경
 	public void update(MemberDTO member);
+
 }
