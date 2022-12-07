@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../includes/header.jsp" %>
+<%@ include file = "../includes/header.jsp"%>
 <div class="container">
-	<h3>게시판(${count })</h3>
+<h4>게시판(${count })</h4>
+</div>
+<div class="container mt-3">
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -15,17 +16,16 @@
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach items="${boards }" var="board" varStatus="st">
+			<c:forEach items="${boards }" var="b" varStatus="st">
 				<tr>
-					<td>${board.num}</td>
-					<td><a href="view/${board.num }">${board.title }[${board.replyCnt }]</a></td>
-					<td>${board.writer}</td>
-					<td><fmt:formatDate value="${board.regdate }"
-							pattern="yyyy-MM-dd" /></td>
-					<td>${board.hitcount }</td>
-
+					<td>${b.num }</td> <!-- ${rowNo - st.index} -->
+					<td><a href="view/${b.num}">${b.title }[${b.replyCnt}]</a></td>
+					<td>${b.writer }</td>
+					<td><fmt:formatDate value="${b.regdate }"
+					pattern="yyyy-MM-dd" /></td>
+					<td>${b.hitcount }</td>
 				</tr>
 			</c:forEach>
 		</tbody>
-	</table>
-	</div>
+	</table>	
+</div>
