@@ -11,8 +11,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class CustomUser extends User {
-	
+public class CustomUser extends User{
+
 	private MemberDTO member;
 	
 	public CustomUser(MemberDTO member) {
@@ -21,7 +21,6 @@ public class CustomUser extends User {
 				member.getAuthList().stream()
 				.map(auth->new SimpleGrantedAuthority(auth.getAuth()))
 				.collect(Collectors.toList()));
-		this.member  = member;
+		this.member = member;
 	}
-
 }

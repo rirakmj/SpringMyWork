@@ -6,5 +6,6 @@ import com.example.demo03.dto.MemberDTO;
 
 @Mapper
 public interface MemberMapper {
-  public MemberDTO read(String username);
+	
+	public MemberDTO read(String username);
 }
